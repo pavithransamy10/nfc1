@@ -35,6 +35,22 @@ if ('NDEFReader' in window) {
       alert("Error scanning NFC tag. Please try again.");
     }
   });
+  
+  // Function to display "inactive" after 5 seconds of inactivity
+  const displayInactive = () => {
+    alert("Food is Not Fresh");
+  };
+  
+  // Set the timeout to display "inactive" after 5 seconds of inactivity
+  const setInactiveTimeout = () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(displayInactive, 10000);
+  };
+  
+  // Listen for user activity and reset the timeout
+  window.addEventListener('mousemove', setInactiveTimeout);
+  window.addEventListener('keydown', setInactiveTimeout);
+  
 } else {
   console.log("NFC not supported by the browser");
   alert("NFC not supported by the browser");
